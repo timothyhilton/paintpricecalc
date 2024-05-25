@@ -1,0 +1,16 @@
+2024-05-16 14:26:12.562 AEST [13984] LOG:  starting PostgreSQL 16.3, compiled by Visual C++ build 1938, 64-bit
+2024-05-16 14:26:12.565 AEST [13984] LOG:  listening on IPv6 address "::1", port 5432
+2024-05-16 14:26:12.565 AEST [13984] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-05-16 14:26:12.628 AEST [18392] LOG:  database system was interrupted; last known up at 2024-05-16 14:23:00 AEST
+2024-05-16 14:26:13.140 AEST [18392] LOG:  database system was not properly shut down; automatic recovery in progress
+2024-05-16 14:26:13.151 AEST [18392] LOG:  redo starts at 0/1573160
+2024-05-16 14:26:13.151 AEST [18392] LOG:  invalid record length at 0/1573198: expected at least 24, got 0
+2024-05-16 14:26:13.151 AEST [18392] LOG:  redo done at 0/1573160 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2024-05-16 14:26:13.154 AEST [25756] LOG:  checkpoint starting: end-of-recovery immediate wait
+2024-05-16 14:26:13.172 AEST [25756] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.019 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1573198, redo lsn=0/1573198
+2024-05-16 14:26:13.190 AEST [13984] LOG:  database system is ready to accept connections
+2024-05-16 14:32:13.243 AEST [13984] LOG:  could not open file "postmaster.pid": No such file or directory
+2024-05-16 14:32:13.243 AEST [13984] LOG:  performing immediate shutdown because data directory lock file is invalid
+2024-05-16 14:32:13.244 AEST [13984] LOG:  received immediate shutdown request
+2024-05-16 14:32:13.244 AEST [13984] LOG:  could not open file "postmaster.pid": No such file or directory
+2024-05-16 14:32:14.441 AEST [13984] LOG:  database system is shut down
