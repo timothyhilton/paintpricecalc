@@ -43,25 +43,27 @@ export default function InputPage() {
     }
 
     return (
-        <div className="flex flex-col justify-items-center">
-            <h1 className="font-semibold mx-auto mt-8 text-4xl">Please input your room dimensions below</h1>
-            <div className="flex justify-center mt-9">
-                <div className="grid grid-cols-3 gap-4 gap-x">
-                    {rooms.map(room => {
-                        return (
-                            <RoomInput 
-                                key={rooms.indexOf(room)} 
-                                room={room} 
-                                index={rooms.indexOf(room)} 
-                                removeOnClick={removeRoom} 
-                                onChange={updateRoom} 
-                            />
-                        )
-                    })}
-                    <AddNewRoom onClick={addNewRoom} />
+        <>
+            <div className="flex flex-col justify-items-center">
+                <h1 className="font-semibold mx-auto mt-8 text-4xl">Please input your room dimensions below</h1>
+                <div className="flex justify-center mt-9">
+                    <div className="grid grid-cols-3 gap-4 gap-x">
+                        {rooms.map(room => {
+                            return (
+                                <RoomInput 
+                                    key={rooms.indexOf(room)} 
+                                    room={room} 
+                                    index={rooms.indexOf(room)} 
+                                    removeOnClick={removeRoom} 
+                                    onChange={updateRoom} 
+                                />
+                            )
+                        })}
+                        <AddNewRoom onClick={addNewRoom} />
+                    </div>
                 </div>
+                <Button className="w-[8rem] mt-5 mx-auto">Calculate</Button>
             </div>
-            <Button className="w-[8rem] mt-5 mx-auto">Calculate</Button>
-        </div>
+        </>
     )
 }
