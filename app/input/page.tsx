@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RoomInput from "./room-input";
 import Room from "../types/room";
 import AddNewRoom from "./add-new";
@@ -8,15 +8,25 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 
 export default function InputPage() {
-    const Rooms = [
+    const initialRooms = [
         {
-            width: 2, 
-            length: 1, 
-            height: 20
+            width: 0, 
+            length: 0, 
+            height: 0
         }
     ] as Room[]
 
-    const [rooms, setRooms] = useState<Room[]>(Rooms)
+    const [rooms, setRooms] = useState<Room[]>(() => {
+        if (typeof window !== 'undefined') {
+            const savedRooms = localStorage.getItem('rooms')
+            return savedRooms ? JSON.parse(savedRooms) : initialRooms
+        }
+        return initialRooms
+    });
+
+    useEffect(() => {
+        localStorage.setItem('rooms', JSON.stringify(rooms))
+    }, [rooms]);
 
     function addNewRoom() {
         const newRoom = {
