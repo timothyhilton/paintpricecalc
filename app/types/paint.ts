@@ -2,7 +2,6 @@ export interface Container {
     containerId: number
     size: number
     price: number
-    quantity?: number
   }
   
   export interface Paint {
