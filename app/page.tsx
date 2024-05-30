@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center h-screen">
       <Link href="/input">
-        <Button>Enter app</Button>
+        <Button>Enter Calculator</Button>
       </Link>
     </div>
   )

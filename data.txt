@@ -6,7 +6,7 @@ CREATE TABLE Users (
     passwordHash CHAR(64) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     phone VARCHAR(255),
-    userType VARCHAR(255)
+    isStaff BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE Brands (

@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
 
     // Insert the new user into the database
     await pool.query(
-      'INSERT INTO Users (username, passwordHash, email, phone, userType) VALUES (?, ?, ?, ?, ?)',
-      [username, hashedPassword, email, phone, "regular"]
+      'INSERT INTO Users (username, passwordHash, email, phone) VALUES (?, ?, ?, ?)',
+      [username, hashedPassword, email, phone]
     )
 
     return NextResponse.json({ success: true })
