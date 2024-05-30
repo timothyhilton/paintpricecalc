@@ -5,6 +5,7 @@ import RoomInput from "./room-input";
 import Room from "../types/room";
 import AddNewRoom from "./add-new";
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation';
 
 export default function InputPage() {
     const Rooms = [
@@ -42,6 +43,15 @@ export default function InputPage() {
         setRooms([...rooms])
     }
 
+    const router = useRouter();
+
+    function handleCalculate() {
+        const totalSquareMeters = rooms.reduce((total, room) => {
+            return total + (room.length * room.width) + (2 * (room.height * room.width)) + (2 * (room.height * room.length))
+        }, 0)
+        router.push(`/calculate?totalSquareMeters=${totalSquareMeters.toFixed(2)}`)
+    }
+
     return (
         <>
             <div className="flex flex-col justify-items-center">
@@ -62,7 +72,9 @@ export default function InputPage() {
                         <AddNewRoom onClick={addNewRoom} />
                     </div>
                 </div>
-                <Button className="w-[8rem] mt-5 mx-auto">Calculate</Button>
+                <Button className="w-[8rem] mt-5 mx-auto" onClick={handleCalculate}>
+                    Calculate
+                </Button>
             </div>
         </>
     )

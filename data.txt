@@ -1,0 +1,66 @@
+just storing the data and schema stuff here for now
+
+CREATE TABLE Users (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(64) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(255),
+    userType VARCHAR(255)
+);
+
+CREATE TABLE Brands (
+    brandId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    postcode VARCHAR(255),
+    mobile VARCHAR(255),
+    phone VARCHAR(255),
+    website VARCHAR(255)
+);
+
+CREATE TABLE Paints (
+    paintId INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    brandId INT,
+    coverage_per_litre FLOAT,
+    FOREIGN KEY (brandId) REFERENCES Brands(brandId)
+);
+
+CREATE TABLE Containers (
+    containerId INT AUTO_INCREMENT PRIMARY KEY,
+    paintId INT,
+    size INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (paintId) REFERENCES Paints(paintId)
+);
+
+INSERT INTO Brands (name, address, city, state, postcode, mobile, phone, website)
+VALUES
+('Dulux', '304 Industry Road', 'Saintsville', 'NSW', '2001', '(02)48590987', '212555444', 'https://www.dulux.com.au'),
+('British Paints', '29 Big Lane', 'Alstonbury', 'VIC', '3008', '(03)34875903', '212555444', 'https://www.britishpaints.com.au');
+
+INSERT INTO Paints (name, brandId, coverage_per_litre)
+VALUES
+('WashNWear Interior', 1, 16),
+('WashNWear Exterior', 1, 16),
+('Weathershield Exterior', 1, 14),
+('Weathershield Interior', 1, 14),
+('Ultra Air Interior', 2, 18),
+('Ultra Air Exterior', 2, 18);
+
+INSERT INTO Containers (paintId, size, price)
+VALUES
+(1, 20, 100),
+(1, 10, 60),
+(2, 20, 110),
+(2, 10, 70),
+(3, 20, 110),
+(3, 10, 70),
+(3, 5, 40),
+(4, 20, 110),
+(4, 10, 70),
+(5, 10, 90),
+(6, 10, 90);

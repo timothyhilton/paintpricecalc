@@ -1,0 +1,15 @@
+export interface Container {
+    containerId: number
+    size: number
+    price: number
+    quantity?: number
+  }
+  
+  export interface Paint {
+    paintId: number
+    name: string
+    coverage_per_litre: number
+    brandName: string
+    url: string
+    containers: Container[]
+  }

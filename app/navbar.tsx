@@ -17,7 +17,7 @@ export default function Navbar({ username }: { username?: string }) {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 flex justify-between items-center p-4 bg-background z-50">
+    <nav className="fixed top-0 left-0 right-0 flex justify-between items-center p-4 bg-background z-50 border-b">
       <div className="text-foreground text-lg font-semibold ml-2">DQPaints</div>
       <div className="flex items-center space-x-4">
         {username ? (
