@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server'
 import pool from '@/app/db'
 
 export async function PUT(req: Request, { params }: { params: { paintId: string } }) {
-  const paint = await req.json()
-  await pool.query('UPDATE Paints SET ? WHERE paintId = ?', [paint, params.paintId])
+  const { name, coverage_per_litre, brandId } = await req.json()
+  await pool.query('UPDATE Paints SET name = ?, coverage_per_litre = ?, brandId = ? WHERE paintId = ?', [name, coverage_per_litre, brandId, params.paintId])
   return NextResponse.json({ message: 'Paint updated' })
 }
 

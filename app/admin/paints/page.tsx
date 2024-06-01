@@ -2,24 +2,33 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Paint } from '@/app/types/paint'
+import { Brand, Paint } from '@/app/types/paint'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Input } from '@/components/ui/input'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function AdminPaintsPage() {
   const [paints, setPaints] = useState<Paint[]>([])
   const [editingPaint, setEditingPaint] = useState<Paint | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [brands, setBrands] = useState<Brand[]>([])
 
   useEffect(() => {
     fetchPaints()
+    fetchBrands()
   }, [])
 
   async function fetchPaints() {
     const res = await fetch('/api/admin/paints')
     const data = await res.json()
     setPaints(data)
+  }
+
+  async function fetchBrands() {
+    const res = await fetch('/api/admin/brands')
+    const data = await res.json()
+    setBrands(data)
   }
 
   async function createPaint(paint: Paint) {
@@ -122,20 +131,26 @@ export default function AdminPaintsPage() {
               placeholder="Coverage per litre"
               type="number"
             />
-            <Input
-              value={editingPaint?.brandName || ''}
-              onChange={(e) =>
-                setEditingPaint({ ...editingPaint, brandName: e.target.value } as Paint)
+            <Select
+              value={editingPaint?.brandId?.toString() || ''}
+              onValueChange={(value) =>
+                setEditingPaint({ ...editingPaint, brandId: parseInt(value) } as Paint)
               }
-              placeholder="Brand name"
-            />
-            <Input
-              value={editingPaint?.url || ''}
-              onChange={(e) =>
-                setEditingPaint({ ...editingPaint, url: e.target.value } as Paint)
-              }
-              placeholder="URL"
-            />
+            >
+              <SelectTrigger className="border rounded p-2">
+                <SelectValue placeholder="Select Brand" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Brands</SelectLabel>
+                  {brands.map((brand) => (
+                    <SelectItem key={brand.brandId} value={brand.brandId.toString()}>
+                      {brand.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
           <DialogFooter>
             <Button
