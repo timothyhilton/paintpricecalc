@@ -19,4 +19,11 @@ export interface Paint {
 export interface Brand {
   brandId: number
   name: string
+  address?: string
+  city?: string
+  state?: string
+  postcode?: string
+  mobile?: string
+  phone?: string
+  website?: string
 }
