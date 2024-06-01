@@ -12,7 +12,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const paint = await req.json()
-  await pool.query('INSERT INTO Paints SET ?', paint)
+  await pool.query('INSERT INTO Paints (name, brandId, coverage_per_litre) VALUES (?, ?, ?)', [paint.name, paint.brandId, paint.coverage_per_litre])
   return NextResponse.json({ message: 'Paint created' })
 }
 
