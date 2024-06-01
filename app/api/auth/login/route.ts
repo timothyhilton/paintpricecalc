@@ -17,8 +17,15 @@ export async function POST(req: NextRequest) {
         maxAge: 60 * 60 * 24 * 7, // One week
         path: '/',
       })
+      const isAdminCookie = serialize('isAdmin', user.isStaff ? 'true' : 'false', {
+        httpOnly: true,
+        secure: true,
+        maxAge: 60 * 60 * 24 * 7, // One week
+        path: '/',
+      })
       const response = NextResponse.json({ success: true })
       response.headers.set('Set-Cookie', cookie)
+      response.headers.append('Set-Cookie', isAdminCookie)
       return response
     } else {
       return NextResponse.json({ error: 'Invalid credentials.' }, { status: 401 })
