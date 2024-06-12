@@ -64,8 +64,8 @@ export default function InputPage() {
 
     return (
         <>
-            <div className="flex flex-col justify-items-center">
-                <h1 className="font-semibold mx-auto mt-8 text-4xl">Please input your room dimensions below</h1>
+            <div className="flex flex-col justify-items-center mt-28">
+                <h1 className="mx-auto mt-8 text-4xl font-bold">Please input your room dimensions below</h1>
                 <div className="flex justify-center mt-9">
                     <div className="grid grid-cols-3 gap-4 gap-x">
                         {rooms.map(room => {

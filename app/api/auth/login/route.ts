@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import pool from '@/app/db'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { serialize } from 'cookie'
 
 export async function POST(req: NextRequest) {
